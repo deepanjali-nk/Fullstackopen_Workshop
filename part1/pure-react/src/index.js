@@ -1,5 +1,5 @@
 const Display = (props) => {
-    return React.createElement("h1", { id: "one" }, props.message);
+    return <h1 id="one"> Hello {props.message}</h1>
 };
 
 const App = () => {
