@@ -8,10 +8,15 @@ const App= () => {
   const increasebyone =()=>{
     setCounter(counter+1);
   }
+  const decreasebyone= ()=>{
+    setCounter(counter-1);
+  }
   return(
     <div>
       <Display counter= {counter} />
       <button onClick={increasebyone}>plus one</button>
+      <button onClick={()=>setCounter(0)}> reset</button>
+      <button onClick={decreasebyone}>minus one </button>
     </div>
   ) 
 }
