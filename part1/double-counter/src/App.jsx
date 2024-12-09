@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import Display from './Display';
 import MyButton from './MyButton';
+import History from './History';
+
 const App= () => {
   // let [left,setleft] = useState(1);
   // let [right,setright] = useState(1);
@@ -37,7 +38,8 @@ const App= () => {
       <MyButton somefunction={increasebyoneleft} text="Increase by one"/>
       {clicks.right}
       <MyButton somefunction={increasebyoneright} text="Increase by one"/>
-      <div>click history:  {clickHistory}</div>
+      <History history={clickHistory}/>
+      {/* <div>click history:  {clickHistory}</div> */}
       <div>total clicks: {totalClick}</div>
     </div>
   ) 
