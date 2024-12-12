@@ -20,7 +20,7 @@ const App= () => {
 
     })
   },[]);
-  console.log("deeps");
+  
   const notesToShow = notes.filter((note)=>(showAll ? true : note.important));
   const handleSubmit = (event) => { 
     event.preventDefault();
