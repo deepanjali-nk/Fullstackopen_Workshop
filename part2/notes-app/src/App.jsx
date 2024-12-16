@@ -23,7 +23,7 @@ const App= () => {
       console.log("error",error);
     });
   },[]);
-
+  
   const notesToShow = notes.filter((note)=>(showAll ? true : note.important));
   const handleSubmit = (event) => { 
     event.preventDefault();
