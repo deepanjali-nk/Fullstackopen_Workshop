@@ -1,4 +1,3 @@
-
 const Notes= ({notes,updateNote }) => {
     return(
        <div>
