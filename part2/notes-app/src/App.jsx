@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import Notes from "./components/Notes";
 import axios from 'axios';
 import noteService from './services/notes';
+import Notification from "./components/Notification";
 
 
 const App= () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('a new note...');
   const [showAll, setShowAll] = useState(true);
+  const [notification,setNotification]= useState('');
 
   useEffect(()=>{
     console.log('effect');
@@ -16,7 +18,7 @@ const App= () => {
     myAxios.then((result)=>{  
       console.dir(result);
       console.log('promise fulfilled');
-      result.push({id: 100, content: 'fake note', important: true});
+      result.push({id: 100, content: 'fake note', important: true});+
       setNotes(result);
 
     }).catch((error)=>{
@@ -59,7 +61,11 @@ const App= () => {
     }).catch((error)=>{
       console.log("error",error);
       if(error.response.status===404){
-        alert('the note is already deleted');
+        setNotification(" sorry this note is fake");
+        setTimeout(()=>{
+          setNotification();
+        },5000);
+        // alert('the note is already deleted');
         setNotes(notes.filter((note)=>note.id!==id));
       }});
     console.log("return promise",putPromise);
@@ -70,7 +76,8 @@ const App= () => {
 
   return(
       <div>
-        <h1>Notes</h1>
+        <h1 className="redbackground">Notes</h1>
+        <Notification message={notification}/>
         <button onClick={handleShowAll}>
           Show {showAll ? 'important' : 'all'}
         </button>
