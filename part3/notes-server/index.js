@@ -40,21 +40,23 @@ app.get("/api/notes/:id",((request,response)=>{
     response.status(404).send(`Theres no note at ${getId}`);
   }
 }))
-app.delete("/api/notes/:id",((request,response)=>{
+app.delete("/api/notes/:id",(request,response)=>{
   const getId= (request.params.id);
   notes=(notes.filter((note)=> note.id!==getId));
 
-  response.status(204).send(`The note at ${getId} has been deleted`)
-}))
-
-app.post("/api/notes",(request,response)=>{
-  const myNewPost= request.body;
-  myNewPost.id = notes.length+1;
-  notes.push(myNewPost);
-  console.log(myNewPost);
-  response.status(201).json(myNewPost)
+  response.status(204);
 
 })
+
+app.post("/api/notes", (request, response) => {
+  const myNewPost = request.body;
+  myNewPost.id = (notes.length + 1);
+  notes.push(myNewPost);
+  console.log(myNewPost);
+  response.status(201).json(myNewPost);
+});
+
+
 const PORT = 3002;
 app.listen(PORT);
 console.log(`Server running on port ${PORT}`)

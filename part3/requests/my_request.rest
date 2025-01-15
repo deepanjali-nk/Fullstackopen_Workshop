@@ -7,5 +7,5 @@ content-Type: application/json
 
 {
   "content": "This is my new note",
-  "important": false
+  "important": false,
 }
