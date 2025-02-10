@@ -9,6 +9,7 @@ mongoose.connect(url)
     console.error('Error connecting to MongoDB:', error.message);
     process.exit(1);
   });
+console.log("NODE_ENV:", process.env.NODE_ENV);
 
 module.exports = mongoose;
 
