@@ -3,12 +3,15 @@ const mongoose = require('mongoose');
 const noteSchema = new mongoose.Schema({
   content: {
     type: String,
-    minLength: [3, 'Content must be at least 3 characters long']
+    minLength: [3, 'Content must be at least 3 characters long'],
   },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
   important: Boolean
 });
 
-// Set up the toJSON transformation
 noteSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();

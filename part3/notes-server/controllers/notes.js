@@ -1,9 +1,10 @@
 const app = require('express').Router();
 const Note = require('../models/note');
+const User=require('../models/user');
 
 app.get('/', async (request, response, next) => {
     try {
-        const result = await Note.find({});
+        const result = await Note.find({}).populate('user');
         response.json(result);
     } catch (error) {
         next(error);
@@ -37,15 +38,22 @@ app.delete('/:id', async (request, response, next) => {
 });
 
 app.post('/', async (request, response, next) => {
-    try {
-        const { content, important = false } = request.body;
-        if (!content) {
-            return response.status(400).json({ error: 'Content is required' });
-        }
+    const body = request.body;
+    const user=await User.findById(body.userId);
+    if(!body.content) {
+        return response.status(400).json({ error: 'Content is required' });
+    }
 
-        const note = new Note({ content, important });
+    const note = new Note({
+        content: body.content,
+        important: body.important || false,
+        user:user.id,
+    });
+    try {
         const result = await note.save();
         response.status(201).json(result);
+        user.notes=user.notes.concat(result._id);
+        await user.save();
     } catch (error) {
         next(error);
     }

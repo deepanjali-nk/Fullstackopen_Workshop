@@ -6,8 +6,9 @@ POST http://localhost:3001/api/notes/
 Content-Type: application/json
 
 {
-  "content": " note",
-  "important": false
+  "content": " Deepanjali's note",
+  "important": false,
+  "userId": "67b35a195e47d27ec7e9ade6"
 }
 
 ###
@@ -17,4 +18,14 @@ Content-Type: application/json
 {
   "content": "This is my updated note",
   "important": true
+}
+
+###
+POST http://localhost:3001/api/users/
+Content-Type: application/json
+
+{
+  "username": "Deeps",
+  "name": "Deepa here",
+  "password": "pwddsjhbf"  
 }

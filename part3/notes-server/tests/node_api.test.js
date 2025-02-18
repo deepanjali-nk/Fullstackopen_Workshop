@@ -22,7 +22,7 @@ before(async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
-  console.log('✅ Test database connected');
+  console.log(' Test database connected');
 });
 
 
@@ -50,7 +50,7 @@ test('the first note is about HTTP methods', async () => {
 describe('Testing post methods', () => {
 test('a valid note can be added ', async () => {
   const newNote = {
-    content: 'async/await simplifies making async calls',
+    content: 'testing',
     important: true,
   }
 
@@ -68,8 +68,8 @@ test('a valid note can be added ', async () => {
 
   assert(contents.includes('async/await simplifies making async calls'))
 });
-});
+})
 after(async () => {
   await mongoose.connection.close();
-  console.log('✅ Test database connection closed');
+  console.log(' Test database connection closed');
 });
