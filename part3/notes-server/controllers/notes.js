@@ -1,6 +1,7 @@
 const app = require('express').Router();
 const Note = require('../models/note');
 const User=require('../models/user');
+const jwt = require('jsonwebtoken');
 
 app.get('/', async (request, response, next) => {
     try {
@@ -37,9 +38,22 @@ app.delete('/:id', async (request, response, next) => {
     }
 });
 
+
+const getTokenFrom = request => {
+  const authorization = request.get('authorization')
+  if (authorization && authorization.startsWith('Bearer ')) {
+    return authorization.replace('Bearer ', '')
+  }
+  return null
+}
 app.post('/', async (request, response, next) => {
     const body = request.body;
-    const user=await User.findById(body.userId);
+    try {
+    const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET)
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'token invalid' })
+    }
+    const user = await User.findById(decodedToken.id)
     if(!body.content) {
         return response.status(400).json({ error: 'Content is required' });
     }
@@ -49,11 +63,10 @@ app.post('/', async (request, response, next) => {
         important: body.important || false,
         user:user.id,
     });
-    try {
-        const result = await note.save();
-        response.status(201).json(result);
-        user.notes=user.notes.concat(result._id);
-        await user.save();
+    const result = await note.save();
+    response.status(201).json(result);
+    user.notes=user.notes.concat(result._id);
+    await user.save();
     } catch (error) {
         next(error);
     }
