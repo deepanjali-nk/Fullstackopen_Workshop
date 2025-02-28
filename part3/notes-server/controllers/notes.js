@@ -57,7 +57,6 @@ app.post('/', async (request, response, next) => {
     if(!body.content) {
         return response.status(400).json({ error: 'Content is required' });
     }
-
     const note = new Note({
         content: body.content,
         important: body.important || false,

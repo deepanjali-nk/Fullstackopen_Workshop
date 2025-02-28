@@ -5,11 +5,11 @@ const noteSchema = new mongoose.Schema({
     type: String,
     minLength: [3, 'Content must be at least 3 characters long'],
   },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
-  important: Boolean
+  important: Boolean,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
 });
 
 noteSchema.set('toJSON', {

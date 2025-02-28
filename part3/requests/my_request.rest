@@ -4,10 +4,10 @@ GET http://localhost:3001/api/notes/
 ###
 POST http://localhost:3001/api/notes/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlZXBzIiwiaWQiOiI2N2I0MWI1NDc2NDdkNTMzYjA0MThlMDIiLCJpYXQiOjE3Mzk4NTg1MzZ9.Pu_EgdRdpwQ5ZoU39wiZCTy2A3T-Lt-XzEWIk70lbIo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlZXBzIiwiaWQiOiI2N2JjMjQyZDE2MWE1YmNlNWM3YWNkOTUiLCJpYXQiOjE3NDAzODMzNzIsImV4cCI6MTc0MDM4Mzk3Mn0.e7Wn-qPu3USfWQGmJWv0EenSS3hCpbazx1vHIxmxuNY
 
 {
-  "content": "This is a new one",
+  "content": "Demo note",
   "important": true
 }
 
