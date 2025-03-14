@@ -1,5 +1,5 @@
 import { useState, useEffect,useRef} from "react";
-import Notes from "./components/Notes";
+import Note from "./components/Note";
 import noteService from './services/notes';
 import Notification from "./components/Notification";
 import loginService from "./services/login";
@@ -26,7 +26,7 @@ const App= () => {
     myAxios.then((result)=>{  
       console.dir(result);
       console.log('promise fulfilled');
-      result.push({id: 100, content: 'fake note', important: true});+
+      result.push({id: 100, content: 'fake note', important: true});
       setNotes(result);
 
     }).catch((error)=>{
@@ -84,7 +84,7 @@ const App= () => {
       console.log('error',error);
       setNotification('wrong credentials');
       setTimeout(()=>{
-        setNotification();
+        setNotification(null);
       },5000);
     }
   };
@@ -105,7 +105,7 @@ const App= () => {
       if(error.response.status===404){
         setNotification(" sorry this note is fake");
         setTimeout(()=>{
-          setNotification();
+          setNotification(null);
         },5000);
         // alert('the note is already deleted');
         setNotes(notes.filter((note)=>note.id!==id));
@@ -152,7 +152,7 @@ const noteForm = () => {
         </button>
         <ul>
           {notesToShow.map(value =>{
-             return < Notes key={value.id} notes={value} updateNote={()=>{updateData(value.id)}}/>
+             return < Note key={value.id} notes={value} updateNote={()=>{updateData(value.id)}}/>
           })}
         </ul>
        
