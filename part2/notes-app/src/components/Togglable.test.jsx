@@ -8,7 +8,7 @@ describe('<Togglable />', () => {
   beforeEach(() => {
     container = render(
       <Togglable buttonLabel="show...">
-        <div className="testDiv" >
+        <div className="testDiv">
           togglable content
         </div>
       </Togglable>
@@ -16,7 +16,9 @@ describe('<Togglable />', () => {
   })
 
   test('renders its children', async () => {
-    await screen.findAllByText('togglable content')
+    // Ensures that the children are rendered after the toggle button is clicked
+    const div = await screen.findByText('togglable content')
+    expect(div).toBeInTheDocument()
   })
 
   test('at start the children are not displayed', () => {
@@ -33,3 +35,4 @@ describe('<Togglable />', () => {
     expect(div).not.toHaveStyle('display: none')
   })
 })
+
