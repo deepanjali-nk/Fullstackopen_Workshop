@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom';
 import Note from './Note';
-import Togglable from './Togglable'; // adjust the path as needed
+import Togglable from './Togglable'; 
 import { test, expect } from 'vitest';
 
 test('renders content', () => {
@@ -11,7 +11,7 @@ test('renders content', () => {
     important: true
   };
 
-  render(<Note notes={note} updateNote={() => {}} />); // Change `note` to `notes`
+  render(<Note notes={note} updateNote={() => {}} />);
 
   const div = screen.getByText(/Component testing is done with react-testing-library/i);
   expect(div).toBeInTheDocument();
@@ -26,7 +26,7 @@ test('clicking the button calls event handler once', async () => {
   const mockHandler = vi.fn();
 
   render(
-    <Note notes={note} updateNote={mockHandler} />  // Change `note` to `notes`
+    <Note notes={note} updateNote={mockHandler} /> 
   );
 
   const user = userEvent.setup();

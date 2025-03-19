@@ -14,6 +14,8 @@ export default [
       globals: {
         ...globals.browser,
         ...vitestGlobals.environments.env.globals, // Add vitest globals
+        ...globals.jest, // Add Jest globals
+        ...globals.cypress,
       },
       parserOptions: {
         ecmaVersion: 'latest',
@@ -27,6 +29,8 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'vitest-globals': vitestGlobals, // Add vitest-globals plugin
+      cypress,
+      jest
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -34,6 +38,7 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       ...vitestGlobals.configs.recommended.rules, // Apply vitest-globals rules
+
 
       // Custom rules
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],

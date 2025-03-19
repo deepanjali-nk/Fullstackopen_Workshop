@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "test": "vitest run",
     "build": "vite build",
     "server": "json-server --watch db.json --port 3001",
     "lint": "eslint .",
     "preview": "vite preview",
+    "cypress:open": "cypress open",
     "build:ui": "rm -rf build && rm -rf ../../part3/notes-server/dist && npm run build && cp -r dist ../../part3/notes-server"
   },
   "dependencies": {
@@ -28,7 +29,9 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
     "@vitest/coverage-v8": "^3.0.8",
+    "cypress": "^14.2.0",
     "eslint": "^9.13.0",
+    "eslint-plugin-cypress": "^4.2.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",

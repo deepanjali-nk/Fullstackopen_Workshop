@@ -16,4 +16,4 @@ const connectDB = mongoose.connect(url)
 
 console.log("NODE_ENV:", process.env.NODE_ENV);
 
-module.exports = { mongoose, connectDB }; // Export both
+module.exports = { mongoose, connectDB };
